@@ -1,4 +1,4 @@
-{% macro create_pm_views() %}
+{% macro create_pm_views(param_table_name) %}
 
 {{ log("Running create_pm_views()") }}
 
@@ -21,7 +21,7 @@
         {% for var_schema_name in var_schema_array.columns[0].values() %}       
             select 
             {% for var_column_name in var_column_array.columns[0].values() %}
-                var_column_name {% if not loop.last -%}, {%- endif %}
+                {{ var_column_name }} {% if not loop.last -%}, {%- endif %}
             {% endfor %}    
             from {{ var_schema_name }}.{{ var_table_name }}
             {% if not loop.last -%} union all {%- endif %}
@@ -31,8 +31,8 @@
 
 {% endmacro %}
 
-depends_on: {{ ref('tenant_schemas') }}
-depends_on: {{ ref('tenant_tables') }}
-depends_on: {{ ref('tenant_columns') }}
+-- depends_on: {{ ref('tenant_schemas') }}
+-- depends_on: {{ ref('tenant_tables') }}
+-- depends_on: {{ ref('tenant_columns') }}
 
 {{ create_pm_views()}}
