@@ -5,7 +5,6 @@
     {%- set var_schema_array = run_query(sql) -%}
     {%- set ns = namespace(var_max_school_year=0) -%}
     {% for var_schema_name in var_schema_array.columns[0].values() -%}       
-        {{ log(var_schema_name) }}
         {%- set var_schema_name_parts = var_schema_name.split(sep='_') -%}
         {%- set var_school_year_index = (var_schema_name_parts | length)-1 -%}
         {%- set var_school_year = var_schema_name_parts[var_school_year_index] -%}
