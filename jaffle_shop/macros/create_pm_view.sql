@@ -7,7 +7,6 @@
     {#- Get the array of columns -#}
     {% set sql -%}select column_name from {{ ref('tenant_columns') }} where table_name = '{{ in_table_name|upper }}' order by ordinal_position{%- endset %}
     {%- set var_column_array = run_query(sql) -%}
-    {{ log(var_column_array) }}
     {% for var_schema_name in var_schema_array.columns[0].values() %}       
         select
         {{ get_school_year(var_schema_name) }} as SCHOOL_YEAR,
