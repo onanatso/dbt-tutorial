@@ -1,10 +1,8 @@
-{#- Gets the latest school year based on the schema name -#}
-{% macro get_latest_school_year() -%}  
-    {#- Get the array of schemas -#}
-    {% set sql -%}select schema_name from {{ ref('tenant_schemas') }}{%- endset %}
-    {%- set var_schema_array = run_query(sql) -%}
+{#- Gets the latest school year based on the list of schema names -#}
+{% macro get_latest_school_year(in_schema_array) -%}
+
     {%- set ns = namespace(var_max_school_year=0) -%}
-    {% for var_schema_name in var_schema_array.columns[0].values() -%}       
+    {% for var_schema_name in in_schema_array -%}       
         {%- set var_schema_name_parts = var_schema_name.split(sep='_') -%}
         {%- set var_school_year_index = (var_schema_name_parts | length)-1 -%}
         {%- set var_school_year = var_schema_name_parts[var_school_year_index] -%}
@@ -16,4 +14,6 @@
     {%- endfor %}
     {%- set ns.var_max_school_year = ns.var_max_school_year + 1 -%}
     {{ ns.var_max_school_year }}
+    {{ log(ns.var_max_school_year) }}
+ 
 {%- endmacro %}
