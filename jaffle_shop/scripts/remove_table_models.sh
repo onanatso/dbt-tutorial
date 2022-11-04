@@ -1,0 +1,3 @@
+MODELS_PM_FOLDER=${PWD}/models/pm
+
+rm $MODELS_PM_FOLDER/*

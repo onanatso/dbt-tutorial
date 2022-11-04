@@ -1,0 +1,1 @@
+{{ config(materialized='ephemeral') }}{{ get_schema_tables() }}

@@ -1,0 +1,1 @@
+{{ config(materialized='ephemeral') }}{{ generate_drop_views_script() }}
