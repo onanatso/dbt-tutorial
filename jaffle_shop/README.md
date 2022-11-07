@@ -1,15 +1,21 @@
-Welcome to your new dbt project!
+Welcome to the DBT project!  This project is to create the single-tenant views from the multi-tenant schemas.
 
-### Using the starter project
+## Usage
 
-Try running the following commands:
-- dbt run
-- dbt test
+### Running the PM script
+
+```
+> ./scripts/pm/run.sh
+```
+
+This script does 3 things:
+1. Cleans up the `./models/pm` folder
+2. Creates the model definitions in `./models/pm`
+3. Performs the `dbt run --models pm` to actually generage all the PM view models
 
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+
+
+
+
+
