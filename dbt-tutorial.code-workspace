@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../projects/ps-compliance-cloud"
+		}
+	],
+	"settings": {
+		"powershell.cwd": "/Users/cayetanoo/Documents/GitHub/dbt-tutorial"
+	}
+}

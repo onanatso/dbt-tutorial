@@ -1,8 +1,14 @@
+#!/bin/bash
+
 # This script will generate the dbt model files for every table in the PM schema
 
 # This is a bit of a hack.  We have a mock model called schema_tables just so we can get a list into a file.
 # We will only compile this model, never actually run.
 # When compiled the list will be generated in ./target/compiled/project/models/util/schema_tables_list.sql
+
+echo -e '*** create_pm_table_models: STARTING\n'
+
+# Compile the utility model that generates view models
 dbt compile --models pm-util.schema_tables_list
 
 PROJECT_DIR=${PWD##*/}
@@ -25,3 +31,6 @@ cat $SCHEMA_TABLES_CLEAN_FILE | tr ' \t' '\n\n' | while read TABLENAME; do
 EOF
     fi
 done
+
+echo -e '*** create_pm_table_models: Model files created in $MODELS_PM_FOLDER\n'
+echo -e '*** create_pm_table_models: DONE\n'
